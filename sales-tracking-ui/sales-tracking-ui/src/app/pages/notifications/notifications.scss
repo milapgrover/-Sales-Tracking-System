@@ -1,0 +1,40 @@
+.page-title {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.notification-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.notification-card {
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  transition: .3s;
+}
+
+.notification-card:hover {
+  transform: translateY(-3px);
+}
+
+.notification-icon {
+  font-size: 2rem;
+}
+
+.notification-content h5 {
+  margin-bottom: 5px;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.notification-content p {
+  margin: 0;
+  color: #64748b;
+}

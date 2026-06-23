@@ -1,0 +1,33 @@
+<div class="container-fluid">
+
+  <h2 class="page-title mb-4">
+    Notifications
+  </h2>
+
+  <div class="notification-card">
+
+    @if(notifications.length > 0){
+
+      @for(notification of notifications; track $index){
+
+        <div class="notification-item">
+
+          🔔 {{ notification.message }}
+
+        </div>
+
+      }
+
+    } @else {
+
+      <div class="empty-state">
+
+        No Notifications Available
+
+      </div>
+
+    }
+
+  </div>
+
+</div>

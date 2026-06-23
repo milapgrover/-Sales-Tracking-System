@@ -1,0 +1,55 @@
+<nav class="navbar-custom">
+
+  <div class="navbar-left">
+
+    <div class="brand-info">
+
+      <h2>{{ title }}</h2>
+
+      <span>
+        Inventory & Sales Analytics
+      </span>
+
+    </div>
+
+  </div>
+
+  <div class="navbar-right">
+
+    <button class="notification-btn">
+
+      <i class="bi bi-bell-fill"></i>
+
+      @if(notificationCount > 0){
+
+        <span class="notification-badge">
+          {{ notificationCount }}
+        </span>
+
+      }
+
+    </button>
+
+    <div class="user-profile">
+
+      <div class="avatar">
+        {{ userName.charAt(0) }}
+      </div>
+
+      <div class="user-info">
+
+        <span class="name">
+          {{ userName }}
+        </span>
+
+        <span class="role">
+          Administrator
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</nav>

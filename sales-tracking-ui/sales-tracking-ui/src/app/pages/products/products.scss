@@ -1,0 +1,44 @@
+.page-title{
+  color:#2563eb;
+  font-weight:700;
+}
+
+.summary-card{
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.summary-card h6{
+  color:#64748b;
+}
+
+.summary-card h2{
+  color:#2563eb;
+  font-weight:700;
+}
+
+.table-card{
+  background:white;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.table-header{
+  background:#2563eb;
+  color:white;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.search-box{
+  width:250px;
+}
+
+.table{
+  margin-bottom:0;
+}

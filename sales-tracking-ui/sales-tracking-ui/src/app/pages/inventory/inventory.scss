@@ -1,0 +1,16 @@
+.badge{
+  font-size:14px;
+  padding:8px 12px;
+}
+
+.table tbody tr:hover{
+  background:#f8fafc;
+}
+
+.inventory-card{
+  transition:.3s;
+}
+
+.inventory-card:hover{
+  transform:translateY(-5px);
+}

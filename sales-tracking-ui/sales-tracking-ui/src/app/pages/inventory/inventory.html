@@ -1,0 +1,125 @@
+<div class="container-fluid">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="page-title">
+      Inventory Management
+    </h2>
+  </div>
+
+
+
+  <div class="row g-4 mb-4">
+
+    <div class="col-md-6">
+      <div class="inventory-card">
+
+        <h5>Total Products</h5>
+
+        <h2>
+          {{ summary?.totalProducts ?? 0 }}
+        </h2>
+
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="inventory-card">
+
+        <h5>Total Stock</h5>
+
+        <h2>
+          {{ summary?.totalStock ?? 0 }}
+        </h2>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="table-card">
+
+    <div class="table-header">
+      Low Stock Products
+    </div>
+
+    <div class="table-responsive">
+
+      <table class="table table-hover align-middle">
+
+        <thead>
+
+          <tr>
+            <th>ID</th>
+            <th>Product Name</th>
+            <th>Current Stock</th>
+            <th>Minimum Stock</th>
+            <th>Unit Price</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          @if(lowStockProducts.length > 0){
+
+            @for(product of lowStockProducts; track product.id){
+
+              <tr>
+
+                <td>
+                  {{ product.id }}
+                </td>
+
+                <td>
+                  {{ product.productName }}
+                </td>
+
+                <td>
+
+                  <span class="badge bg-danger">
+
+                    {{ product.stockQuantity }}
+
+                  </span>
+
+                </td>
+
+                <td>
+                  {{ product.minimumStock }}
+                </td>
+
+                <td>
+                  ₹ {{ product.unitPrice }}
+                </td>
+
+              </tr>
+
+            }
+
+          } @else {
+
+            <tr>
+
+              <td
+                colspan="5"
+                class="text-center py-4">
+
+                No Low Stock Products Found
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
