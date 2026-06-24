@@ -1,16 +1,93 @@
-.badge{
-  font-size:14px;
-  padding:8px 12px;
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 1.5rem;
 }
 
-.table tbody tr:hover{
-  background:#f8fafc;
+.inventory-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  transition: .3s;
 }
 
-.inventory-card{
-  transition:.3s;
+.inventory-card:hover {
+  transform: translateY(-3px);
+}
+.card-header-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.inventory-card:hover{
-  transform:translateY(-5px);
+.card-header-row i {
+  color: #2563eb;
+  font-size: 1.2rem;
+}
+
+.inventory-card h5 {
+  color: #64748b;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.inventory-card h2 {
+  color: #2563eb;
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin: 0;
+}
+.navbar-brand h2 {
+  font-size: 1.8rem;
+}
+
+.table-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.table-header {
+  background: #2563eb;
+  color: white;
+  padding: 20px;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table thead th {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 16px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.table tbody td {
+  padding: 16px;
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.badge {
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  border-radius: 20px;
+}
+
+.bg-danger {
+  background: #dc3545 !important;
+}
+
+.table-responsive {
+  overflow-x: auto;
 }

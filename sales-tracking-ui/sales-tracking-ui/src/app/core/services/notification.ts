@@ -9,13 +9,12 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class NotificationService {
-
-  private http = inject(HttpClient);
-
-  getNotifications(): Observable<Notification[]> {
-
-    return this.http.get<Notification[]>(
-      `${environment.apiUrl}/notifications`
-    );
+  private http = inject(HttpClient)
+  getNotifications()
+  {
+      return this.http.get<Notification[]>
+      (
+        `${environment.apiUrl}/notifications`
+      )
   }
 }

@@ -1,15 +1,12 @@
+  @if(dashboard(); as Data)
+  {
 <div class="dashboard-container">
-
   <div class="hero-banner">
-
     <h1>Sales Tracking System</h1>
-
     <p>
       Manage Products, Orders, Revenue and Inventory Efficiently
     </p>
-
   </div>
-
   <div class="row g-4 mt-1">
 
     <div class="col-lg-3 col-md-6">
@@ -19,23 +16,16 @@
         <div class="icon">
           <i class="fas fa-box"></i>
         </div>
-
         <div class="info">
-
           <span>Total Products</span>
-
           <h2>
-            {{ dashboard?.totalProducts }}
+            {{ Data.totalProducts }}
           </h2>
-
         </div>
-
       </div>
 
     </div>
-
     <div class="col-lg-3 col-md-6">
-
       <div class="stat-card orders-card">
 
         <div class="icon">
@@ -43,17 +33,12 @@
         </div>
 
         <div class="info">
-
           <span>Total Orders</span>
-
           <h2>
-            {{ dashboard?.totalOrders }}
+            {{ Data.totalOrders }}
           </h2>
-
         </div>
-
       </div>
-
     </div>
 
     <div class="col-lg-3 col-md-6">
@@ -69,7 +54,7 @@
           <span>Total Revenue</span>
 
           <h2>
-            ₹ {{ dashboard?.totalRevenue }}
+            ₹ {{ Data.totalRevenue }}
           </h2>
 
         </div>
@@ -87,29 +72,20 @@
         </div>
 
         <div class="info">
-
           <span>Low Stock</span>
-
           <h2>
-            {{ dashboard?.lowStockProducts }}
+            {{ Data.lowStockProducts }}
           </h2>
-
         </div>
-
       </div>
-
     </div>
 
   </div>
-
   <div class="activity-card mt-5">
-
     <h3>Recent Activities</h3>
-
     <div class="activity-item">
       Dashboard statistics updated successfully.
     </div>
-
   </div>
-
 </div>
+}

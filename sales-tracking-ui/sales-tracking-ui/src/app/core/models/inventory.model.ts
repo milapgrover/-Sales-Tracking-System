@@ -1,4 +1,4 @@
-export interface InventorySummary {
-  totalProducts: number;
-  totalStock: number;
-}
+export interface Inventory{
+  totalProducts : number,
+  totalStock : number
+};

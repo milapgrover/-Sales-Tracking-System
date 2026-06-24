@@ -1,7 +1,9 @@
 import {
   Component,
   OnInit,
-  inject
+  inject,
+  signal,
+  computed
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -20,73 +22,74 @@ import { ProductService } from '../../core/services/product';
   templateUrl: './products.html',
   styleUrl: './products.scss'
 })
-export class Products implements OnInit {
+export class ProductsComponent implements OnInit {
 
   private productService =
     inject(ProductService);
 
-  products: Product[] = [];
+  products =
+    signal<Product[]>([]);
 
-  searchText = '';
+  searchText =
+    signal('');
+
+  totalStock = computed(() =>
+
+    this.products().reduce(
+      (sum, product) =>
+        sum + product.stockQuantity,
+      0
+    )
+
+  );
+
+  lowStockCount = computed(() =>
+
+    this.products().filter(
+      product =>
+        product.stockQuantity <=
+        product.minimumStock
+    ).length
+
+  );
+
+  filteredProducts = computed(() =>
+
+    this.products().filter(
+      product =>
+        product.productName
+          .toLowerCase()
+          .includes(
+            this.searchText()
+              .toLowerCase()
+          )
+    )
+
+  );
 
   ngOnInit(): void {
 
     this.loadProducts();
+
   }
 
   loadProducts(): void {
 
     this.productService
       .getAllProducts()
-      .subscribe({
-        next: (data) => {
-          this.products = data;
-        },
-        error: (err) => {
-          console.error(err);
-        }
+      .subscribe(data => {
+
+        this.products.set(data);
+
       });
-  }
 
-  getTotalStock(): number {
-
-    return this.products
-      .reduce(
-        (sum, product) =>
-          sum + product.stockQuantity,
-        0
-      );
-  }
-
-  getLowStockCount(): number {
-
-    return this.products
-      .filter(
-        product =>
-          product.stockQuantity
-          <=
-          product.minimumStock
-      ).length;
-  }
-
-  filteredProducts(): Product[] {
-
-    return this.products.filter(
-      product =>
-        product.productName
-          .toLowerCase()
-          .includes(
-            this.searchText
-              .toLowerCase()
-          )
-    );
   }
 
   deleteProduct(
     id: number
   ): void {
 
-    if(
+    if (
       !confirm(
         'Delete this product?'
       )
@@ -96,10 +99,12 @@ export class Products implements OnInit {
 
     this.productService
       .deleteProduct(id)
-      .subscribe({
-        next: () => {
-          this.loadProducts();
-        }
+      .subscribe(() => {
+
+        this.loadProducts();
+
       });
+
   }
+
 }

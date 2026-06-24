@@ -1,7 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
 import { Notification } from '../../core/models/notification.model';
 import { NotificationService } from '../../core/services/notification';
 
@@ -12,24 +10,14 @@ import { NotificationService } from '../../core/services/notification';
   templateUrl: './notifications.html',
   styleUrl: './notifications.scss'
 })
-export class Notifications implements OnInit {
-
-  private notificationService =
-    inject(NotificationService);
-
-  notifications: Notification[] = [];
-
+export class NotificationsComponent implements OnInit {
+  private notificationsService = inject(NotificationService)
+  notifications = signal<Notification[]|null>(null)
   ngOnInit(): void {
-
-    this.notificationService
-      .getNotifications()
-      .subscribe({
-        next: (data) => {
-          this.notifications = data;
-        },
-        error: (err) => {
-          console.error(err);
-        }
-      });
+    this.notificationsService.getNotifications().subscribe(data=>
+    {
+       this.notifications.set(data);
+    }
+    )
   }
 }

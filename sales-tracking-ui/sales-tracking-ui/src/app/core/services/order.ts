@@ -10,24 +10,23 @@ import { environment } from '../../../environments/environment';
 })
 export class OrderService {
 
-  private http = inject(HttpClient);
-
-  getAllOrders(): Observable<Order[]> {
+  private http = inject(HttpClient)
+  getAllOrders():Observable<Order[]>
+  {
     return this.http.get<Order[]>(
       `${environment.apiUrl}/orders`
-    );
+    )
   }
-
-  getOrderById(id: number): Observable<Order> {
+  getOrderByid(id: number): Observable<Order> {
     return this.http.get<Order>(
       `${environment.apiUrl}/orders/${id}`
     );
   }
-
-  createOrder(order: any): Observable<any> {
+  createOrder(order : any) : Observable<any>
+  {
     return this.http.post(
-      `${environment.apiUrl}/orders`,
+      `${environment.apiUrl}/order`,
       order
-    );
+    )
   }
 }

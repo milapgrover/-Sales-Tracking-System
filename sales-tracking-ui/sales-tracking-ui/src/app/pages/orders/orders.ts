@@ -1,7 +1,9 @@
 import {
   Component,
   OnInit,
-  inject
+  computed,
+  inject,
+  signal
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -22,9 +24,9 @@ import { OrderService } from '../../core/services/order';
   templateUrl: './orders.html',
   styleUrl: './orders.scss'
 })
-export class Orders implements OnInit {
+export class OrdersComponent implements OnInit {
 
-  private http = inject(HttpClient);
+ private http = inject(HttpClient);
 
   private productService =
     inject(ProductService);
@@ -32,11 +34,11 @@ export class Orders implements OnInit {
   private orderService =
     inject(OrderService);
 
-  orders: any[] = [];
+  orders = signal<any[]>([]);
 
-  products: any[] = [];
+  products = signal<any[]>([]);
 
-  showOrderForm = false;
+  showOrderForm = signal(false);
 
   apiUrl =
     'http://localhost:8080/api/orders';
@@ -54,6 +56,16 @@ export class Orders implements OnInit {
 
   };
 
+  totalRevenue = computed(() =>
+
+    this.orders().reduce(
+      (sum, order) =>
+        sum + order.totalAmount,
+      0
+    )
+
+  );
+
   ngOnInit(): void {
 
     this.loadOrders();
@@ -64,47 +76,23 @@ export class Orders implements OnInit {
 
     this.http
       .get<any[]>(this.apiUrl)
-      .subscribe({
+      .subscribe(data => {
 
-        next: (response) => {
-
-          this.orders = response;
-
-        },
-
-        error: (error) => {
-
-          console.error(error);
-
-        }
+        this.orders.set(data);
 
       });
 
   }
 
-  get totalRevenue(): number {
-
-    return this.orders.reduce(
-      (sum, order) =>
-        sum + order.totalAmount,
-      0
-    );
-
-  }
-
   openOrderForm(): void {
 
-    this.showOrderForm = true;
+    this.showOrderForm.set(true);
 
     this.productService
       .getAllProducts()
-      .subscribe({
+      .subscribe(data => {
 
-        next: (data) => {
-
-          this.products = data;
-
-        }
+        this.products.set(data);
 
       });
 
@@ -112,52 +100,36 @@ export class Orders implements OnInit {
 
   closeOrderForm(): void {
 
-    this.showOrderForm = false;
+    this.showOrderForm.set(false);
 
   }
 
   createOrder(): void {
 
     this.orderService
-      .createOrder(
-        this.orderRequest
-      )
-      .subscribe({
+      .createOrder(this.orderRequest)
+      .subscribe(() => {
 
-        next: () => {
+        alert(
+          'Order Created Successfully'
+        );
 
-          alert(
-            'Order Created Successfully'
-          );
+        this.showOrderForm.set(false);
 
-          this.showOrderForm = false;
+        this.orderRequest = {
 
-          this.orderRequest = {
+          customerName: '',
 
-            customerName: '',
+          items: [
+            {
+              productId: 0,
+              quantity: 1
+            }
+          ]
 
-            items: [
-              {
-                productId: 0,
-                quantity: 1
-              }
-            ]
+        };
 
-          };
-
-          this.loadOrders();
-
-        },
-
-        error: (err) => {
-
-          console.error(err);
-
-          alert(
-            'Failed To Create Order'
-          );
-
-        }
+        this.loadOrders();
 
       });
 

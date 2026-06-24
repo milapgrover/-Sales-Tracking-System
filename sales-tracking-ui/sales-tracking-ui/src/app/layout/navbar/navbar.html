@@ -1,53 +1,53 @@
 <nav class="navbar-custom">
 
-  <div class="navbar-left">
+  <div class="navbar-brand">
 
-    <div class="brand-info">
+    <h2>Sales Tracking System</h2>
 
-      <h2>{{ title }}</h2>
+  </div>
 
-      <span>
-        Inventory & Sales Analytics
-      </span>
+  <div class="navbar-menu">
 
-    </div>
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="active-link">
+      Dashboard
+    </a>
+
+    <a
+      routerLink="/products"
+      routerLinkActive="active-link">
+      Products
+    </a>
+
+    <a
+      routerLink="/orders"
+      routerLinkActive="active-link">
+      Orders
+    </a>
+
+    <a
+      routerLink="/inventory"
+      routerLinkActive="active-link">
+      Inventory
+    </a>
+
+    <a
+      routerLink="/notifications"
+      routerLinkActive="active-link">
+      Notifications
+    </a>
 
   </div>
 
   <div class="navbar-right">
 
     <button class="notification-btn">
-
       <i class="bi bi-bell-fill"></i>
-
-      @if(notificationCount > 0){
-
-        <span class="notification-badge">
-          {{ notificationCount }}
-        </span>
-
-      }
-
     </button>
 
-    <div class="user-profile">
-
-      <div class="avatar">
-        {{ userName.charAt(0) }}
-      </div>
-
-      <div class="user-info">
-
-        <span class="name">
-          {{ userName }}
-        </span>
-
-        <span class="role">
-          Administrator
-        </span>
-
-      </div>
-
+    <div class="user-avatar">
+      U
     </div>
 
   </div>

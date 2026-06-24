@@ -1,3 +1,7 @@
+@if(summary(); as Data)
+{
+
+
 <div class="container-fluid">
 
   <div class="d-flex justify-content-between align-items-center mb-4">
@@ -6,7 +10,7 @@
     </h2>
   </div>
 
-
+  <!-- Summary Cards -->
 
   <div class="row g-4 mb-4">
 
@@ -16,7 +20,7 @@
         <h5>Total Products</h5>
 
         <h2>
-          {{ summary?.totalProducts ?? 0 }}
+          {{ Data.totalProducts }}
         </h2>
 
       </div>
@@ -28,7 +32,7 @@
         <h5>Total Stock</h5>
 
         <h2>
-          {{ summary?.totalStock ?? 0 }}
+          {{ Data.totalStock }}
         </h2>
 
       </div>
@@ -36,7 +40,7 @@
 
   </div>
 
-
+  <!-- Low Stock Products -->
 
   <div class="table-card">
 
@@ -61,10 +65,11 @@
         </thead>
 
         <tbody>
+        
 
-          @if(lowStockProducts.length > 0){
+          @if(lowStockProducts().length > 0){
 
-            @for(product of lowStockProducts; track product.id){
+            @for(product of lowStockProducts(); track product.id){
 
               <tr>
 
@@ -123,3 +128,4 @@
   </div>
 
 </div>
+}
