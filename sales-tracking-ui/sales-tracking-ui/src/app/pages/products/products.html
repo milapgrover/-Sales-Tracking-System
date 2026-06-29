@@ -9,55 +9,29 @@
   </div>
 
   <div class="row g-4 mb-4">
-
     <div class="col-md-4">
-
       <div class="summary-card">
-
         <h6>Total Products</h6>
-
-        <h2>
-          {{ products().length }}
-        </h2>
-
+        <h2>{{ products().length }}</h2>
       </div>
-
     </div>
-
     <div class="col-md-4">
-
       <div class="summary-card">
-
         <h6>Total Stock</h6>
-
-        <h2>
-          {{ totalStock() }}
-        </h2>
-
+        <h2>{{ totalStock() }}</h2>
       </div>
-
     </div>
 
     <div class="col-md-4">
-
       <div class="summary-card">
-
         <h6>Low Stock Products</h6>
-
-        <h2>
-          {{ lowStockCount() }}
-        </h2>
-
+        <h2>{{ lowStockCount() }}</h2>
       </div>
-
     </div>
 
   </div>
-
   <div class="table-card">
-
     <div class="table-header">
-
       <div>
         Products List
       </div>
@@ -74,95 +48,66 @@
 
       <thead>
 
-      <tr>
+        <tr>
 
-        <th>ID</th>
-        <th>Name</th>
-        <th>Stock</th>
-        <th>Min Stock</th>
-        <th>Price</th>
-        <th>Actions</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Stock</th>
+          <th>Min Stock</th>
+          <th>Price</th>
+          <th>Actions</th>
 
-      </tr>
+        </tr>
 
       </thead>
 
       <tbody>
 
-      @if(filteredProducts().length > 0){
+        @if(filteredProducts().length > 0){
 
-        @for(product of filteredProducts(); track product.id){
+          @for(product of filteredProducts(); track product.id){
 
+            <tr>
+
+              <td>{{ product.id }}</td>
+
+              <td>{{ product.productName }}</td>
+
+              <td>
+
+                <span
+                  class="badge"
+                  [class.bg-danger]="product.stockQuantity <= product.minimumStock"
+                  [class.bg-success]="product.stockQuantity > product.minimumStock">
+
+                  {{ product.stockQuantity }}
+
+                </span>
+
+              </td>
+
+              <td>{{ product.minimumStock }}</td>
+
+              <td>₹ {{ product.unitPrice }}</td>
+
+              <td>
+
+                <button
+                  class="btn btn-danger btn-sm"
+                  (click)="deleteProduct(product.id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          }
+        } @else {
           <tr>
-
-            <td>
-              {{ product.id }}
+            <td colspan="6" class="text-center py-4">
+              No Products Found
             </td>
-
-            <td>
-              {{ product.productName }}
-            </td>
-
-            <td>
-
-              <span
-                class="badge"
-                [class.bg-danger]="
-                  product.stockQuantity
-                  <=
-                  product.minimumStock
-                "
-                [class.bg-success]="
-                  product.stockQuantity
-                  >
-                  product.minimumStock
-                ">
-
-                {{ product.stockQuantity }}
-
-              </span>
-
-            </td>
-
-            <td>
-              {{ product.minimumStock }}
-            </td>
-
-            <td>
-              ₹ {{ product.unitPrice }}
-            </td>
-
-            <td>
-
-              <button
-                class="btn btn-danger btn-sm"
-                (click)="deleteProduct(product.id)">
-
-                Delete
-
-              </button>
-
-            </td>
-
           </tr>
 
         }
-
-      } @else {
-
-        <tr>
-
-          <td
-            colspan="6"
-            class="text-center py-4">
-
-            No Products Found
-
-          </td>
-
-        </tr>
-
-      }
 
       </tbody>
 

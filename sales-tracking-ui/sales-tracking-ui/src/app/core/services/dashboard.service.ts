@@ -8,12 +8,11 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class DashboardService {
-    private http = inject(HttpClient);
-    // private apiUrl = 'http://localhost:8080/api/dashboard';
-
-    getDashboardSummary(): Observable<Dashboard> {
-       return this.http.get<Dashboard>(
-        `${environment.apiUrl}/dashboard`
-       )
+    private http = inject(HttpClient)
+    getDashboardSummary() : Observable<Dashboard>
+    {
+        return this.http.get<Dashboard>(
+          `${environment.apiUrl}/dashboard`
+        )
     }
 }

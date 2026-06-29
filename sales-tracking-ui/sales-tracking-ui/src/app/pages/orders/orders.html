@@ -6,24 +6,16 @@
       Orders Management
     </h2>
 
-    <button
-      class="btn btn-primary"
-      (click)="openOrderForm()">
-
+    <button class="btn btn-primary" (click)="openOrderForm()">
       + Create Order
-
     </button>
 
   </div>
 
   <div class="row g-4 mb-4">
-
     <div class="col-md-6">
-
       <div class="summary-card">
-
         <h6>Total Orders</h6>
-
         <h2>{{ orders().length }}</h2>
 
       </div>
@@ -72,22 +64,14 @@
       @if(orders().length === 0){
 
         <tr>
-
-          <td colspan="4"
-              class="text-center py-4">
-
+          <td colspan="4" class="text-center py-4">
             No Orders Available
-
           </td>
-
         </tr>
-
       }
 
       @for(order of orders(); track order.id){
-
         <tr>
-
           <td>
             {{order.id}}
           </td>
@@ -134,10 +118,7 @@
         Customer Name
       </label>
 
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="orderRequest.customerName">
+      <input type="text" class="form-control" [(ngModel)]="orderRequest.customerName">
 
     </div>
 
@@ -147,9 +128,7 @@
         Product
       </label>
 
-      <select
-        class="form-select"
-        [(ngModel)]="orderRequest.items[0].productId">
+      <select class="form-select" [(ngModel)]="orderRequest.items[0].productId">
 
         <option value="0">
           Select Product
@@ -157,11 +136,8 @@
 
         @for(product of products(); track product.id){
 
-          <option
-            [value]="product.id">
-
+          <option [value]="product.id">
             {{ product.productName }}
-
           </option>
 
         }

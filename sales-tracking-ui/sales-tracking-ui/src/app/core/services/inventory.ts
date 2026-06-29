@@ -11,19 +11,19 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class InventoryService {
-
-  private http = inject(HttpClient);
+  private http = inject(HttpClient)
   getInventoryService() : Observable<Inventory>
   {
-    return this.http.get<Inventory>(
+    return this.http.get<Inventory>
+    (
       `${environment.apiUrl}/inventory/summary`
     )
   }
   getLowStockProducts() : Observable<Product[]>
   {
-     return this.http.get<Product[]>
-     (
+    return this.http.get<Product[]>
+    (
       `${environment.apiUrl}/inventory/low-stock`
-     )
+    )
   }
 }

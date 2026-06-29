@@ -5,29 +5,17 @@
   </h2>
 
   <div class="notification-card">
-
     @if(notifications.length > 0){
-
       @for(notification of notifications(); track $index){
-
         <div class="notification-item">
-
-          🔔 {{ notification.message }}
-
+          {{ notification.message }}
         </div>
-
       }
-
     } @else {
-
       <div class="empty-state">
-
         No Notifications Available
-
       </div>
-
     }
-
   </div>
-
+  
 </div>

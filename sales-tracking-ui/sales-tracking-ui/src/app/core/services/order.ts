@@ -13,20 +13,23 @@ export class OrderService {
   private http = inject(HttpClient)
   getAllOrders():Observable<Order[]>
   {
-    return this.http.get<Order[]>(
+    return this.http.get<Order[]>
+    (
       `${environment.apiUrl}/orders`
     )
   }
-  getOrderByid(id: number): Observable<Order> {
-    return this.http.get<Order>(
+  getOrderById(id : number) : Observable<Order>
+  {
+    return this.http.get<Order>
+    (
       `${environment.apiUrl}/orders/${id}`
-    );
+    )
   }
   createOrder(order : any) : Observable<any>
   {
-    return this.http.post(
-      `${environment.apiUrl}/order`,
-      order
+    return this.http.post<any>
+    (
+      `${environment.apiUrl}/orders` , order
     )
   }
 }

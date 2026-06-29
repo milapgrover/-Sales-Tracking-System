@@ -1,9 +1,9 @@
 import {
   Component,
   OnInit,
+  computed,
   inject,
-  signal,
-  computed
+  signal
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -24,85 +24,56 @@ import { ProductService } from '../../core/services/product';
 })
 export class ProductsComponent implements OnInit {
 
-  private productService =
-    inject(ProductService);
+  private productService = inject(ProductService);
 
-  products =
-    signal<Product[]>([]);
+  products = signal<Product[]>([]);
 
-  searchText =
-    signal('');
+  searchText = '';
 
   totalStock = computed(() =>
-
     this.products().reduce(
-      (sum, product) =>
-        sum + product.stockQuantity,
+      (sum, product) => sum + product.stockQuantity,
       0
     )
-
   );
 
   lowStockCount = computed(() =>
-
     this.products().filter(
-      product =>
-        product.stockQuantity <=
-        product.minimumStock
+      product => product.stockQuantity <= product.minimumStock
     ).length
-
   );
 
   filteredProducts = computed(() =>
-
     this.products().filter(
       product =>
         product.productName
           .toLowerCase()
-          .includes(
-            this.searchText()
-              .toLowerCase()
-          )
+          .includes(this.searchText.toLowerCase())
     )
-
   );
 
   ngOnInit(): void {
-
     this.loadProducts();
-
   }
 
   loadProducts(): void {
-
     this.productService
       .getAllProducts()
       .subscribe(data => {
-
         this.products.set(data);
-
       });
-
   }
 
-  deleteProduct(
-    id: number
-  ): void {
+  deleteProduct(id: number): void {
 
-    if (
-      !confirm(
-        'Delete this product?'
-      )
-    ) {
+    if (!confirm('Delete this product?')) {
       return;
     }
 
     this.productService
       .deleteProduct(id)
       .subscribe(() => {
-
         this.loadProducts();
-
       });
 
   }

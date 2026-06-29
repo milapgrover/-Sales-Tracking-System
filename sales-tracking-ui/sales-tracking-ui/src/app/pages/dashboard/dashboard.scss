@@ -7,7 +7,7 @@
   border-radius: 25px;
   padding: 35px 40px;
   color: white;
-  box-shadow: 0 15px 35px rgba(0,0,0,.15);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
   margin-bottom: 30px;
 }
 
@@ -23,26 +23,27 @@
   opacity: .95;
 }
 
-/* STAT CARDS */
 
 .stat-card {
   background: white;
   border-radius: 24px;
   padding: 25px;
+
   display: flex;
   align-items: center;
   gap: 20px;
 
-  box-shadow: 0 8px 25px rgba(0,0,0,.08);
-  transition: all .3s ease;
-
   min-height: 160px;
+
   cursor: pointer;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
+  transition: .3s;
 }
 
 .stat-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0,0,0,.15);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
 }
 
 .icon {
@@ -52,16 +53,16 @@
   border-radius: 18px;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
   font-size: 32px;
 }
 
 .info span {
+  display: block;
   color: #64748b;
   font-size: 15px;
-  display: block;
 }
 
 .info h2 {
@@ -70,12 +71,7 @@
   font-weight: 700;
 }
 
-/* COLORS */
-.revenue-card h2 {
-  color: #16a34a;
-  white-space: nowrap;
-  font-size: 32px;
-}
+
 .products-card .icon {
   background: #dbeafe;
   color: #2563eb;
@@ -96,11 +92,18 @@
   color: #dc2626;
 }
 
+.revenue-card h2 {
+  color: #16a34a;
+  font-size: 32px;
+  white-space: nowrap;
+}
+
+
 .activity-card {
   background: white;
   border-radius: 24px;
   padding: 30px;
-  box-shadow: 0 8px 25px rgba(0,0,0,.08);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
 }
 
 .activity-card h3 {

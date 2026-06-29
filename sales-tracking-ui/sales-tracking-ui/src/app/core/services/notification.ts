@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class NotificationService {
   private http = inject(HttpClient)
-  getNotifications()
+  getNotifications() : Observable<Notification[]>
   {
       return this.http.get<Notification[]>
       (

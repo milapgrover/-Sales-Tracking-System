@@ -12,10 +12,10 @@ import type { Dashboard } from '../../core/models/dashboard.model';
   styleUrl: './dashboard.scss'
 })
 export class DashboardComponent  implements OnInit{
-  private dashhboardService = inject(DashboardService)
-  dashboard = signal<Dashboard |null>(null)
+  private dashboardService = inject(DashboardService)
+  dashboard = signal<Dashboard | null>(null)
   ngOnInit(): void {
-     this.dashhboardService.getDashboardSummary().subscribe(data =>
+    this.dashboardService.getDashboardSummary().subscribe(data =>
     {
       this.dashboard.set(data)
     }
